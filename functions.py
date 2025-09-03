@@ -217,10 +217,10 @@ class GetDataApi:
 
         # JSON to DataFrame
         db_unit_intel = pd.DataFrame(response.json()['data'])
-        db_unit_intel = db_unit_intel[db_unit_intel.name.apply(lambda x: 'zTerminated' in x) == False]
         db_unit_intel = db_unit_intel[db_unit_intel.name.apply(lambda x: 'dilepas' in x) == False]
 
-        # transform
+        # # transform
+        db_unit_intel['name'] = db_unit_intel.name.apply(lambda x: str(x).replace( 'zTerminated - ',''))
         db_unit_intel['name_odoo'] = db_unit_intel.name.apply(lambda x: '-'.join(str(x).split()[1:3]))
         db_unit_intel = db_unit_intel[db_unit_intel.device_id.isin(['2019120162']) == False]
 

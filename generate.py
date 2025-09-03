@@ -58,10 +58,11 @@ def get_data_gps(date, startTime, endTime):
 
     # tarik data units
     tbl_unit = GetDataApi.ApiGps_units()
-    tbl_unit = tbl_unit[tbl_unit.name_odoo.apply(lambda x: 'DT' in x)]
+    tbl_unit = tbl_unit[tbl_unit.name_odoo.apply(lambda x: 'DT' in str(x))]
 
     # filter data
-    # tbl_unit = tbl_unit[tbl_unit.name_odoo.isin([f"DT-{i}" for i in [520,393]])]
+    # tbl_unit = tbl_unit[tbl_unit.name_odoo.isin([f"DT-{i}" for i in [551]])]
+    # tbl_unit = tbl_unit[tbl_unit.name_odoo.apply(lambda x: '551' in x)]
     unit_sep_semicolon = ';'.join(tbl_unit.device_id.unique().tolist())
 
     # get data and save to excel 
